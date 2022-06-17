@@ -37,11 +37,17 @@ export default function CardShowCase(props) {
 
   // Split favourite books and authors by comma
   const favouritesArry = favouriteBooks.split(",")
-  const favouriteObj = []
 
+
+  // bookTitleIndex will only get the even value index 
   let bookTitleIndex = 0;
+  // authorIndex will only get the odd value index
   let authorIndex = 1;
+
+  // Loop through the favouritesArry loop and push it to favouriteObj
+  // Example: favouriteObj = {bookTitle: Harry Potter, author: JK Rowling}
   let obj = {}
+  const favouriteObj = []
   for (let i = 0; i < favouritesArry.length/2; i++) {
     let bookTitle = favouritesArry[bookTitleIndex];
     let author = favouritesArry[authorIndex];
@@ -51,13 +57,9 @@ export default function CardShowCase(props) {
     obj = {};
     bookTitleIndex = bookTitleIndex + 2;
     authorIndex = authorIndex + 2
-    
   }
 
-  console.log(favouriteObj)
-  
-
-  
+  favouriteObj.map(test => console.log(test))
   return (
     <div className="pageBody">
       <main class="has-dflex-center">
@@ -181,12 +183,15 @@ export default function CardShowCase(props) {
                     <div class="text">
                     
                       <ol>
-                         {favouriteObj.map(favourite =>
-                           (<li>
-                              <p>
-                                <b>{favourite.bookTitle}</b>&nbsp;- {favourite.author}
-                              </p>
-                           </li>))}
+                           {favouriteObj.map(favourite =>
+                           {if (favourite.author != undefined && favourite.bookTitle != ""){
+                            return <li>
+                            <p>
+                              <b>{favourite.bookTitle}</b>&nbsp;- {favourite.author}
+                            </p>
+                         </li>
+                           }}
+                           )}
                       </ol>
                     </div>
                   </div>
