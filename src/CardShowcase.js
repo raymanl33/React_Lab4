@@ -1,7 +1,63 @@
+import { ObjectFlags } from "typescript";
 import "./showcase.css";
 
 export default function CardShowCase(props) {
-  console.log(props);
+ console.log(props.formData);
+ const {fullName,
+      aboutMe,
+      githubURL,
+      twitterURL,
+      favouriteBooks,
+      HTML,
+      CSS,
+      JS,
+      Git,
+      React,
+      NodeJS} = props.formData;
+
+  // Put each technology into technologies array 
+  const technologies = [HTML, CSS, JS, Git, React, NodeJS]
+
+  // Create an techArry that contains the name of each technology in string
+  const techArry = ["HTML", "CSS", "JS", "Git", "React", "NodeJS"]
+
+  // Create a default technologies object that set the default boolean value to false
+  const technologiesObj = {HTML: false, CSS: false, JS: false, Git: false, React:false, NodeJS: false}
+
+  // Loop through the technologies array and update technologiesObj
+  let index = 0;
+  technologies.forEach(element => {
+     
+    technologiesObj[techArry[index]] = element;
+    index ++;
+  });
+
+  // Split firstname and lastname
+  const splitName = fullName.split(" ")
+
+  // Split favourite books and authors by comma
+  const favouritesArry = favouriteBooks.split(",")
+  const favouriteObj = []
+
+  let bookTitleIndex = 0;
+  let authorIndex = 1;
+  let obj = {}
+  for (let i = 0; i < favouritesArry.length/2; i++) {
+    let bookTitle = favouritesArry[bookTitleIndex];
+    let author = favouritesArry[authorIndex];
+    obj.bookTitle = [bookTitle], 
+    obj.author = [author];
+    favouriteObj.push(obj);
+    obj = {};
+    bookTitleIndex = bookTitleIndex + 2;
+    authorIndex = authorIndex + 2
+    
+  }
+
+  console.log(favouriteObj)
+  
+
+  
   return (
     <div className="pageBody">
       <main class="has-dflex-center">
@@ -20,8 +76,8 @@ export default function CardShowCase(props) {
                       </div>
                       <div class="infos">
                         <span>
-                          <i class="fas fa-user-circle"></i>&nbsp;&nbsp; Armaan
-                          Dhanji
+                          <i class="fas fa-user-circle"></i>&nbsp;&nbsp; 
+                          {fullName}
                         </span>
                         <span>
                           <i class="fas fa-briefcase"></i>&nbsp;&nbsp;Full Stack
@@ -33,11 +89,11 @@ export default function CardShowCase(props) {
 
                   <div class="lx-card">
                     <div class="lx-row">
-                      <h1 class="title">Connect with Armaan</h1>
+                      <h1 class="title">Connect with {splitName[0]}</h1>
                       <div class="mini-cards">
                         <a
                           class="has-dflex-center bs-md"
-                          href="https://github.com/adhanji8"
+                          href={githubURL}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -45,7 +101,7 @@ export default function CardShowCase(props) {
                         </a>
                         <a
                           class="has-dflex-center bs-md"
-                          href="https://www.twitter.com/bcit"
+                          href={twitterURL}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -60,8 +116,7 @@ export default function CardShowCase(props) {
                 <div class="lx-row">
                   <div class="lx-row lx-card">
                     <h1 class="title">
-                      <i class="fas fa-info-circle"></i>&nbsp;Welcome to
-                      Armaan's corner of the Internet
+                      <i class="fas fa-info-circle"></i>&nbsp;Welcome to {splitName[0]}'s corner of the Internet
                     </h1>
                   </div>
                   <div class="lx-row lx-card">
@@ -70,52 +125,53 @@ export default function CardShowCase(props) {
                     </h1>
                     <div class="text">
                       <p>
-                        Hi, my name is&nbsp;<b>Armaan Dhanji</b>, but I'm better
-                        known by my nickname&nbsp;<i>@armaand</i>, and I'm a
-                        teacher in the School of Computing at BCIT.
+                        {aboutMe}
                       </p>
-                      <p>
-                        I&nbsp;&nbsp;<i class="fas fa-heart"></i>&nbsp; to code
-                        full-stack projects, always looking for innovative ways
-                        to write code that follows practices!
-                      </p>
+                     
                     </div>
                   </div>
                   <div class="lx-row lx-card">
                     <h1 class="title">
                       <i class="fas fa-terminal"></i>&nbsp;Technologies
                     </h1>
+                  
                     <div class="mini-cards">
-                      <span class="has-dflex-center bs-md" title="CSS">
-                        <i class="fab fa-css3-alt"></i>
+                    {Object.keys(technologiesObj).map(keys => 
+                    { if (technologiesObj[keys] === true){
+                      {if (keys === "HTML"){
+                        return  <span class="has-dflex-center bs-md" title={keys}>
+                      <i class={`fab fa-${keys.toLowerCase()}5`}></i>
                       </span>
-                      <span class="has-dflex-center bs-md" title="HTML">
-                        <i class="fab fa-html5"></i>
+                      }}
+                      {if (keys === "CSS"){
+                        return  <span class="has-dflex-center bs-md" title={keys}>
+                      <i class={`fab fa-${keys.toLowerCase()}3-alt`}></i>
                       </span>
-                      <span class="has-dflex-center bs-md" title="JS">
-                        <i class="fab fa-js"></i>
+                      }}
+                      {if (keys === "JS"){
+                        return  <span class="has-dflex-center bs-md" title={keys}>
+                      <i class={`fab fa-${keys.toLowerCase()}`}></i>
                       </span>
-                      <span class="has-dflex-center bs-md" title="Sass">
-                        <i class="fab fa-sass"></i>
+                      }}
+                      {if (keys === "Git"){
+                        return  <span class="has-dflex-center bs-md" title={keys}>
+                      <i class={`fab fa-${keys.toLowerCase()}-alt`}></i>
                       </span>
-                      <span class="has-dflex-center bs-md" title="Git">
-                        <i class="fab fa-git-alt"></i>
+                      }}
+                      {if (keys === "NodeJS"){
+                        return  <span class="has-dflex-center bs-md" title={keys}>
+                      <i class={`fab fa-node-js`}></i>
                       </span>
-                      <span class="has-dflex-center bs-md" title="Gulp">
-                        <i class="fab fa-gulp"></i>
+                      }}
+                      {if (keys === "React"){
+                        return  <span class="has-dflex-center bs-md" title={keys}>
+                      <i class={`fab fa-${keys.toLowerCase()}`}></i>
                       </span>
-                      <span class="has-dflex-center bs-md" title="Node JS">
-                        <i class="fab fa-node-js"></i>
-                      </span>
-                      <span class="has-dflex-center bs-md" title="NPM">
-                        <i class="fab fa-npm"></i>
-                      </span>
-                      <span class="has-dflex-center bs-md" title="PHP">
-                        <i class="fab fa-php"></i>
-                      </span>
-                      <span class="has-dflex-center bs-md" title="React">
-                        <i class="fab fa-react"></i>
-                      </span>
+                      }}
+                      
+                    }}
+                   )}
+                   
                     </div>
                   </div>
                   <div class="lx-row lx-card">
@@ -123,34 +179,14 @@ export default function CardShowCase(props) {
                       <i class="fas fa-book"></i>&nbsp;My favorite books
                     </h1>
                     <div class="text">
+                    
                       <ol>
-                        <li>
-                          <p>
-                            <b>The Lord of the Rings</b>&nbsp;- J. R. R. Tolkien
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>Foundation series</b>&nbsp;- Isaac Asimov
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>Cracking the Coding Interview</b>&nbsp;- Gayle
-                            Laakmann
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>Clean Code</b>&nbsp;- Rob Martin
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>A Brief History of Time</b>&nbsp;- Stephen
-                            Hawking
-                          </p>
-                        </li>
+                         {favouriteObj.map(favourite =>
+                           (<li>
+                              <p>
+                                <b>{favourite.bookTitle}</b>&nbsp;- {favourite.author}
+                              </p>
+                           </li>))}
                       </ol>
                     </div>
                   </div>

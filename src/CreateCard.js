@@ -7,7 +7,6 @@ export default function CreateCard({ formData, setFormData }) {
   const handleChange = (e) => {
     let isChecked = e.target.checked;
     setFormData(prevState => {return {...prevState, [e.target.value]: isChecked }})
-    // setFormData({ ...formData, [e.target.value]: isChecked });
   };
 
   const handleClick = (e) => {
@@ -36,7 +35,6 @@ export default function CreateCard({ formData, setFormData }) {
               placeholder="Your Full Name"
               onChange={(e) =>
                 setFormData(prevState => {return {...prevState, fullName: e.target.value }})
-                // setFormData({ ...formData, fullName: e.target.value })
               }
             />
           </div>
@@ -47,7 +45,6 @@ export default function CreateCard({ formData, setFormData }) {
               placeholder="About Me"
               onChange={(e) =>
                 setFormData(prevState => {return {...prevState, aboutMe: e.target.value }})
-                // setFormData({ ...formData, aboutMe: e.target.value })
               }
             />
           </div>
@@ -107,7 +104,6 @@ export default function CreateCard({ formData, setFormData }) {
               placeholder="Github URL"
               onChange={(e) =>
                 setFormData(prevState => {return {...prevState, githubURL: e.target.value }})
-                // setFormData({ ...formData, githubURL: e.target.value })
               }
             />
           </div>
@@ -118,7 +114,6 @@ export default function CreateCard({ formData, setFormData }) {
               placeholder="Twitter URL"
               onChange={(e) =>
                 setFormData(prevState => {return {...prevState, twitterURL: e.target.value }})
-                // setFormData({ ...formData, twitterURL: e.target.value })
               }
             />
           </div>
@@ -126,10 +121,9 @@ export default function CreateCard({ formData, setFormData }) {
             <input
               type="text"
               name="favouriteBooks"
-              placeholder="Favourite Books"
+              placeholder="Favourite Books (Seperate by Comma)"
               onChange={(e) =>
                 setFormData(prevState => {return {...prevState, favouriteBooks: e.target.value }})
-                // setFormData({ ...formData, favouriteBooks: e.target.value })
               }
             />
           </div>
