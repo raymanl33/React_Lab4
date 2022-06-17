@@ -4,6 +4,7 @@ import CreateCard from "./CreateCard";
 import { useState } from "react";
 import CardShowcase from "./CardShowcase";
 
+
 const location = new ReactLocation();
 
 export default function App() {
@@ -20,7 +21,7 @@ export default function App() {
     React: false,
     NodeJS: false
   });
-
+console.log(formData);
   const routes = [
     {
       path: "/",

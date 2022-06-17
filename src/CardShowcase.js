@@ -1,6 +1,7 @@
 import "./showcase.css";
 
-export default function CardShowCase() {
+export default function CardShowCase(props) {
+  console.log(props);
   return (
     <div className="pageBody">
       <main class="has-dflex-center">

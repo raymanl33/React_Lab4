@@ -1,12 +1,13 @@
 import { useNavigate } from "react-location";
 
 export default function CreateCard({ formData, setFormData }) {
+ 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     let isChecked = e.target.checked;
-    console.log(e.target.value);
-    setFormData({ ...formData, [e.target.value]: isChecked });
+    setFormData(prevState => {return {...prevState, [e.target.value]: isChecked }})
+    // setFormData({ ...formData, [e.target.value]: isChecked });
   };
 
   const handleClick = (e) => {
@@ -34,7 +35,8 @@ export default function CreateCard({ formData, setFormData }) {
               name="fname"
               placeholder="Your Full Name"
               onChange={(e) =>
-                setFormData({ ...formData, fullName: e.target.value })
+                setFormData(prevState => {return {...prevState, fullName: e.target.value }})
+                // setFormData({ ...formData, fullName: e.target.value })
               }
             />
           </div>
@@ -44,7 +46,8 @@ export default function CreateCard({ formData, setFormData }) {
               name="aboutMe"
               placeholder="About Me"
               onChange={(e) =>
-                setFormData({ ...formData, aboutMe: e.target.value })
+                setFormData(prevState => {return {...prevState, aboutMe: e.target.value }})
+                // setFormData({ ...formData, aboutMe: e.target.value })
               }
             />
           </div>
@@ -59,7 +62,9 @@ export default function CreateCard({ formData, setFormData }) {
               HTML
             </label>
             <label className="myLabel">
-              <input type="checkbox" onChange={(e) => handleChange(e)} />
+              <input type="checkbox" 
+              value="CSS"
+              onChange={(e) => handleChange(e)} />
               CSS
             </label>
             <label className="myLabel">
@@ -101,7 +106,8 @@ export default function CreateCard({ formData, setFormData }) {
               name="githubURL"
               placeholder="Github URL"
               onChange={(e) =>
-                setFormData({ ...formData, githubURL: e.target.value })
+                setFormData(prevState => {return {...prevState, githubURL: e.target.value }})
+                // setFormData({ ...formData, githubURL: e.target.value })
               }
             />
           </div>
@@ -111,7 +117,8 @@ export default function CreateCard({ formData, setFormData }) {
               name="twitterURL"
               placeholder="Twitter URL"
               onChange={(e) =>
-                setFormData({ ...formData, twitterURL: e.target.value })
+                setFormData(prevState => {return {...prevState, twitterURL: e.target.value }})
+                // setFormData({ ...formData, twitterURL: e.target.value })
               }
             />
           </div>
@@ -121,7 +128,8 @@ export default function CreateCard({ formData, setFormData }) {
               name="favouriteBooks"
               placeholder="Favourite Books"
               onChange={(e) =>
-                setFormData({ ...formData, favouriteBooks: e.target.value })
+                setFormData(prevState => {return {...prevState, favouriteBooks: e.target.value }})
+                // setFormData({ ...formData, favouriteBooks: e.target.value })
               }
             />
           </div>
